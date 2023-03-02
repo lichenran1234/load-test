@@ -8,7 +8,7 @@ This is for those who just want to quickly try out a load test and don’t need 
 
 ### Step 1: install Locust on your own computer
 
-Follow the [official doc]([url](https://docs.locust.io/en/stable/installation.html)) for installation.
+Follow the [official doc](https://docs.locust.io/en/stable/installation.html) for installation.
 
 ### Step 2: write a locust file `load_test.py` with the load test logics
 
@@ -48,8 +48,8 @@ Assuming you already know how to create EC-2 instances on AWS, here are the deta
 
 ### Step 1: start an EC-2 instance
 * The recommended AMI is __Ubuntu Server 20.04 LTS (HVM), SSD Volume Type__, as the following instructions have been tested on it.
-* For the instance type, it’s not a bad idea to start with c5.4xlarge (with 16 vCPUs). You can choose other instance types based on your needs (for example, c5.24xlarge with more vCPUs). In general, compute-optimized instances (C-family) are recommended for load testing. More CPUs support more QPS.
-* Remember to allocate some disk space for the instance (by attaching a volume). 100 GB of disk space should be sufficient.
+* For the instance type, it’s not a bad idea to start with __c5.4xlarge__ (with 16 vCPUs). You can choose other instance types based on your needs (for example, c5.24xlarge with more vCPUs). In general, compute-optimized instances (C-family) are recommended for load testing. More CPUs support more QPS.
+* Remember to allocate some disk space for the instance (by attaching a volume). __100 GB__ of disk space should be sufficient.
 * Remember to make the __80 port__ of the instance reachable from your laptop (by configuring the __security group__). It’s needed to access the load test UI later on.
 
 ### Step 2: install dependencies needed to run locust
@@ -96,9 +96,9 @@ services:
     command: -f /mnt/locust/load_test.py --worker --master-host master
 ```
 
-### Step 3: write a locust file “load_test.py” with the load test logics
+### Step 3: write a locust file `load_test.py` with the load test logics
 
-In the `load-test` folder, create a file named `load_test.py` with the following content to run load tests against Databricks Model Serving (alternatively, read the [official locust doc]([url](https://docs.locust.io/en/stable/writing-a-locustfile.html)) to learn how to write a locust file):
+In the `load-test` folder, create a file named `load_test.py` with the following content to run load tests against Databricks Model Serving (alternatively, read the [official locust doc](https://docs.locust.io/en/stable/writing-a-locustfile.html) to learn how to write a locust file):
 
 ```python
 from locust import HttpUser, task
@@ -124,7 +124,7 @@ class LoadTestUser(HttpUser):
 ### Step 4: start locust and run load tests
 In the `load-test` folder, run `sudo docker-compose up --scale worker=16` to start locust. Note that `worker=16` means there will be 16 locust workers (utilizing 16 CPU cores on the machine). It’s recommended to have `#workers == #vCPUs-on-the-machine`.
 
-After locust is started, visit `http://{your-ec2-instance-ip}` (__http, not https__) from your laptop to access the locust UI, where you can easily start/stop a load test. Remember that we opened the 80 port of the EC-2 instance to our laptop, which is why we can visit the locust UI from our laptop.
+After locust is started, visit `http://{your-ec2-instance-ip}` (use http, __not__ https) from your laptop to access the locust UI, where you can easily start/stop a load test. Remember that we opened the 80 port of the EC-2 instance to our laptop, which is why we can visit the locust UI from our laptop.
 
 ### Step 5: cleanup
 
