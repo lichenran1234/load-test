@@ -4,7 +4,7 @@ Load testing [Databricks Model Serving](https://docs.databricks.com/machine-lear
 
 This repository demonstrates how to load test a Databricks Model Serving endpoint using the open source load testing tool [locust.io](https://locust.io/).
 
-## Requirements
+## RequirementsAbility to handle difficult customer situations Ability to speak to different audiences Ability to think on your feet Clear Communication Succinct Answers
 
 Before starting the walkthrough, make sure you completed the following tasks:
 
@@ -19,4 +19,4 @@ Follow [the steps outlined here](/local-load-test/README.md) to run a single-pro
 
 
 ## Setting up distributed Locust on a powerful machine (30 min setup, supports high QPS)
-Follow [the steps outlined here](/distributed-load-test/README.md) to set up distributed Locust on an AWS EC-2 instance (with Ubuntu 20.04). It should also be applicable to other cloud providers’ Ubuntu instances.
+Follow [the steps outlined here](/distributed-load-test/README.md) to set up distributed Locust on an AWS EC2 instance. It should also be applicable to other cloud providers’ Ubuntu instances.

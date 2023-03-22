@@ -1,6 +1,6 @@
-### Step 1: start an EC-2 instance
+### Step 1: start an EC2 instance
 * The recommended AMI is __Ubuntu Server 20.04 LTS (HVM), SSD Volume Type__, as the following instructions have been tested on it.
-* For the instance type, it’s not a bad idea to start with __c5.4xlarge__ (with 16 vCPUs). You can choose other instance types based on your needs (for example, c5.24xlarge with more vCPUs). In general, compute-optimized instances (C-family) are recommended for load testing. More CPUs support more QPS.
+* For the instance type, start with __c5.4xlarge__ (with 16 vCPUs). You can choose other instance types based on your needs (for example, c5.24xlarge with more vCPUs). In general, compute-optimized instances (C-family) are recommended for load testing. More CPUs support higher QPS.
 * Remember to allocate some disk space for the instance (by attaching a volume). __100 GB__ of disk space should be sufficient.
 * Remember to make the __80 port__ of the instance reachable from your laptop (by configuring the __security group__). It’s needed to access the load test UI later on.
 
