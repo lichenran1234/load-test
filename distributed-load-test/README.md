@@ -5,7 +5,7 @@
 * Remember to make the __80 port__ of the instance reachable from your laptop (by configuring the __security group__). It’s needed to access the load test UI later on.
 
 ### Step 2: install dependencies needed to run locust
-#### Step 2.1: ssh into the EC-2 instance
+#### Step 2.1: ssh into the EC2 instance
 #### Step 2.2: create a folder named `load-test` and cd into it
 #### Step 2.3: install docker and docker-compose by running the following commands one by one:
 

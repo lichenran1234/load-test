@@ -1,18 +1,28 @@
-from locust import HttpUser, task
+from locust import events, HttpUser, task
+
+@events.init_command_line_parser.add_listener
+def _(parser):
+    parser.add_argument("--endpoint-name", default="")
+    parser.add_argument("--databricks-pat", is_secret=True, default="")
 
 class LoadTestUser(HttpUser):
-    # please update the following host
-    host = "https://xxxxxxx.cloud.databricks.com"
     
-    # please update the following header
-    headers = {'Authorization': 'Bearer dapixxxxxxx'}
-    
-    # please update the following model input
-    model_input = {"dataframe_split": { "columns": ["feature0", "feature1"], "data": [[0, 1]]} }
+    model_input = {"dataframe_split": {
+              "index": [0],
+              "columns": ["fixed_acidity", "volatile_acidity", "citric_acid", "residual_sugar", "chlorides", "free_sulfur_dioxide", "total_sulphur_dioxide", "density", "pH", "sulphates", "alcohol"],
+             "data": [
+              [2.0, 6, 3, 2.4, 12, 4, 12, 8, 3, 2.5, 1.0]
+             ]
+            }
+          }
 
     @task
     def query_single_model(self):
-        # please update the following endpoint name
-        self.client.post("/serving-endpoints/MY_ENDPOINT_NAME/invocations",
-                         headers=self.eaders,
+        token = self.environment.parsed_options.databricks_pat
+        endpoint_name = self.environment.parsed_options.endpoint_name
+
+        headers = {"Authorization": f"Bearer {token}"}
+        
+        self.client.post(f"/serving-endpoints/{endpoint_name}/invocations",
+                         headers=headers,
                          json=self.model_input)
