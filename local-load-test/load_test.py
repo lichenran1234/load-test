@@ -1,21 +1,28 @@
+import json
+import pandas as pd
 from locust import events, HttpUser, task
 
+# Retrieve command line arguments
+# Locust docs: https://docs.locust.io/en/stable/extending-locust.html?highlight=event#custom-arguments
 @events.init_command_line_parser.add_listener
 def _(parser):
     parser.add_argument("--endpoint-name", default="")
     parser.add_argument("--databricks-pat", is_secret=True, default="")
 
-class LoadTestUser(HttpUser):
-    
-    model_input = {"dataframe_split": {
-              "index": [0],
-              "columns": ["fixed_acidity", "volatile_acidity", "citric_acid", "residual_sugar", "chlorides", "free_sulfur_dioxide", "total_sulphur_dioxide", "density", "pH", "sulphates", "alcohol"],
-             "data": [
-              [2.0, 6, 3, 2.4, 12, 4, 12, 8, 3, 2.5, 1.0]
-             ]
-            }
-          }
+# Reads features from CSV file and formats according to Databricks model
+# serving spec: https://docs.databricks.com/machine-learning/model-serving/create-manage-serving-endpoints.html#request-format
+def read_features(path="local-load-test/features.csv"):
 
+    features = pd.read_csv(path)
+    features_json = json.loads(features.to_json(path_or_buf=None, 
+                                                orient="split"))
+    
+    return {"dataframe_split": features_json}
+
+class LoadTestUser(HttpUser):
+
+    model_input = read_features()
+    
     @task
     def query_single_model(self):
 
