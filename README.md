@@ -4,7 +4,7 @@ Load testing [Databricks Model Serving](https://docs.databricks.com/machine-lear
 
 This repository demonstrates how to load test a Databricks Model Serving endpoint using the open source load testing tool [locust.io](https://locust.io/).
 
-## RequirementsAbility to handle difficult customer situations Ability to speak to different audiences Ability to think on your feet Clear Communication Succinct Answers
+## Requirements
 
 Before starting the walkthrough, make sure you completed the following tasks:
 

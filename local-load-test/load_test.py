@@ -1,5 +1,4 @@
 import json
-import pandas as pd
 from locust import events, HttpUser, task
 
 
@@ -10,23 +9,16 @@ def _(parser):
     parser.add_argument("--endpoint-name", default="")
     parser.add_argument("--databricks-pat", is_secret=True, default="")
 
-# Reads features from CSV file and formats according to Databricks model
-# serving spec: https://docs.databricks.com/machine-learning/model-serving/create-manage-serving-endpoints.html#request-format
-def read_features(path="local-load-test/features.csv"):
-
-    features = pd.read_csv(path)
-    features_json = json.loads(features.to_json(path_or_buf=None, 
-                                                orient="split"))
-  
-    return {"dataframe_split": features_json}
-
 class LoadTestUser(HttpUser):
 
-    model_input = read_features()
-   
+# Reads features from JSON file. Format expected by Databricks Model Serving
+# explained here: https://docs.databricks.com/machine-learning/model-serving/create-manage-serving-endpoints.html#request-format
+    with open("local-load-test/features.json", "r") as json_features:
+        model_input = json.load(json_features)
+    
     @task
     def query_single_model(self):
-
+        
         token = self.environment.parsed_options.databricks_pat
         endpoint_name = self.environment.parsed_options.endpoint_name
 
