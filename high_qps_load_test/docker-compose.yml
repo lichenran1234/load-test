@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  master:
+    image: locustio/locust
+    ports:
+      - "80:8089"
+    volumes:
+      - ./:/mnt/locust
+    command: -f /mnt/locust/load_test.py --master
+
+  worker:
+    image: locustio/locust
+    volumes:
+      - ./:/mnt/locust
+    command: -f /mnt/locust/load_test.py --worker --master-host master
