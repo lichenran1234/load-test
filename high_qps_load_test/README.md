@@ -6,9 +6,7 @@
 
 ### Step 2: Install dependencies needed to run Locust
 
-ssh into the EC2 instance and clone this repository to copy its content to the instance. Navigate to the cloned repository's folder.
-
-Install Docker and Docker Compose by running the following commands one by one:
+ssh into the EC2 instance. Install Docker and Docker Compose by running the following commands one by one:
 
 ```bash
 sudo apt update
@@ -28,11 +26,16 @@ sudo curl -L "https://github.com/docker/compose/releases/download/v2.1.1/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-### Step 3: Start Locust and run load tests
+### Step 3: Prepare load test files
+
+Clone this GitHub repository to copy its content to the instance. Navigate to the cloned repository's folder. Overwrite the high_qps_load_test/features.json file with the sample payload for you model.
+
+### Step 4: Start Locust and run load tests
+
 In the cloned folder, run `sudo docker-compose up --scale worker=16` to start Locust. Note that `worker=16` means there will be 16 Locust workers (utilizing 16 CPU cores on the machine). It’s recommended to have `#workers == #vCPUs-on-the-machine`.
 
 After Locust starts, visit `http://{your-ec2-instance-ip}` (use http, __not__ https) from your laptop to access the Locust UI, where you can easily start/stop a load test. Remember that we opened port 80 of the EC2 instance to our laptop, which is why we can visit the Locust UI.
 
-### Step 4: Cleanup
+### Step 5: Cleanup
 
 Don’t forget to terminate the EC2 instance after you finish the load tests to minimize cloud costs.

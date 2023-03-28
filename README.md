@@ -9,6 +9,7 @@ This repository demonstrates how to load test a Databricks Model Serving endpoin
 Before starting the walkthrough, make sure you completed the following tasks:
 
 - [Create a Model Serving endpoint](https://docs.databricks.com/machine-learning/model-serving/create-manage-serving-endpoints.html#ui-workflow) and verify it is in the "Ready" state.
+- Have at least one sample payload for the model ready in JSON format. You can see the [supported format options here](https://docs.databricks.com/machine-learning/model-serving/create-manage-serving-endpoints.html#request-format).
 - [Record the instance name](https://docs.databricks.com/workspace/workspace-details.html#workspace-instance-names-urls-and-ids) of the Databricks workspace where the model is deployed.
 - Databricks APIs use Personal Access Tokens (PAT)s to authenticate. Use an existing PAT or [generate a new PAT](https://docs.databricks.com/dev-tools/auth.html#personal-access-tokens-for-users) that has "Can View" or "Can Manage" permissions on the model serving endpoint. 
 - If your Databricks workspace restricts IP addresses to an IP access list, your load testing source's IP address must be within the access list. You may need to connect to your company's VPN. You can check if IP access lists are used in your Databricks workspace by [following the instructions here](https://docs.databricks.com/security/network/ip-access-list.html#check-if-your-workspace-has-the-ip-access-list-feature-enabled).

@@ -13,7 +13,7 @@ class LoadTestUser(HttpUser):
 
 # Reads features from JSON file. Format expected by Databricks Model Serving
 # explained here: https://docs.databricks.com/machine-learning/model-serving/create-manage-serving-endpoints.html#request-format
-    with open("local-load-test/features.json", "r") as json_features:
+    with open("/mnt/locust/features.json", "r") as json_features:
         model_input = json.load(json_features)
     
     @task

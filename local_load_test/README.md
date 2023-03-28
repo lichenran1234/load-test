@@ -2,9 +2,9 @@
 
 Follow the [official locust docs](https://docs.locust.io/en/stable/installation.html) to install locust on your local computer.
 
-### Step 2: Copy the repository's content
+### Step 2: Prepare the load test files
 
-Clone this repository's content to your local computer. Open a terminal window and navigate to the cloned directory.
+Clone this repository's content to your local computer. Open a terminal window and navigate to the cloned directory. Overwrite the `local_load_test/features.json` file with the sample payload for you model.
 
 ### Step 3: Run the load test
 
