@@ -4,9 +4,15 @@ Load testing [Databricks Model Serving](https://docs.databricks.com/machine-lear
 
 This repository demonstrates how to load test a Databricks Model Serving endpoint using the open source load testing tool [locust.io](https://locust.io/).
 
+## Expected Results
+
+After setting up Locust, you will be able to send requests to your model endpoint with a configurable concurrency. Locust will record the response latency (p50, p75, p99, ect) and display it via the web UI. The data can also be downloaded in CSV format.
+
+![Screen Shot 2023-03-29 at 10 39 07 AM](https://user-images.githubusercontent.com/93339895/228624340-4cec3835-4d2d-4ff9-8fa6-24ec2b6197c4.png)
+
 ## Requirements
 
-Before starting the walkthrough, make sure you completed the following tasks:
+Before starting the walkthrough, make sure you complete the following tasks:
 
 - [Create a Model Serving endpoint](https://docs.databricks.com/machine-learning/model-serving/create-manage-serving-endpoints.html#ui-workflow) and verify it is in the "Ready" state.
 - Have at least one sample payload for the model ready in JSON format. You can see the [supported format options here](https://docs.databricks.com/machine-learning/model-serving/create-manage-serving-endpoints.html#request-format).
