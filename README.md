@@ -20,7 +20,7 @@ Before starting the walkthrough, make sure you complete the following tasks:
 - Databricks APIs use Personal Access Tokens (PAT)s to authenticate. Use an existing PAT or [generate a new PAT](https://docs.databricks.com/dev-tools/auth.html#personal-access-tokens-for-users) that has "Can View" or "Can Manage" permissions on the model serving endpoint. 
 - If your Databricks workspace restricts IP addresses to an IP access list, your load testing source's IP address must be within the access list. You may need to connect to your company's VPN. You can check if IP access lists are used in your Databricks workspace by [following the instructions here](https://docs.databricks.com/security/network/ip-access-list.html#check-if-your-workspace-has-the-ip-access-list-feature-enabled).
 
-## Setting up Locust on your own computer in single-process mode (5 min setup, supports low concurrency)
+## Setting up Locust on your own computer in single-process mode (5 min setup, supports low QPS)
 
 Follow [the steps outlined here](/local_load_test/README.md) to run a single-process load test from your local computer. Locust will only use one CPU core on your machine, and the max queries per second (QPS) supported depends on your payload size. For small payloads, it can support up to hundreds of QPS. For large payloads, it may only support less than 10 QPS.
 
