@@ -1,5 +1,9 @@
-# How to Load Test Databricks Model Serving Endpoints Using Locust
+# How to Load Test Databricks Model Serving Endpoints
 
+## Load Testing using Databricks Notebook (no setup needed)
+This [notebook](/db_load_testing_notebook/Databricks%20Model%20Serving%20Load%20Testing.py) provides a convenient way to load test your serving endpoints and obtain insights into workload size, QPS, and latency. By using the out-of-the-box setup, you can quickly get started with load testing without any additional setup. This notebook is recommended for low to mid QPS goals. If you have a QPS goal greater than 2k, we recommend following the rest of this tutorial to set up Locust.
+
+## Load Testing using Locust
 Load testing [Databricks Model Serving](https://docs.databricks.com/machine-learning/model-serving/index.html) endpoints is an important step before moving the endpoint to production. A load test verfies the latency meets your requirements, helps you estimate costs, and determines expected throughput and concurrency. 
 
 This repository demonstrates how to load test a Databricks Model Serving endpoint using the open source load testing tool [locust.io](https://locust.io/).
@@ -20,15 +24,9 @@ Before starting the walkthrough, make sure you complete the following tasks:
 - Databricks APIs use Personal Access Tokens (PAT)s to authenticate. Use an existing PAT or [generate a new PAT](https://docs.databricks.com/dev-tools/auth.html#personal-access-tokens-for-users) that has "Can View" or "Can Manage" permissions on the model serving endpoint. 
 - If your Databricks workspace restricts IP addresses to an IP access list, your load testing source's IP address must be within the access list. You may need to connect to your company's VPN. You can check if IP access lists are used in your Databricks workspace by [following the instructions here](https://docs.databricks.com/security/network/ip-access-list.html#check-if-your-workspace-has-the-ip-access-list-feature-enabled).
 
-## Load Testing Serving Endpoints with Databricks Notebooks
-This [notebook](/db_load_testing_notebook/Databricks%20Model%20Serving%20Load%20Testing.py) provides a convenient way to load test your serving endpoints and obtain insights into workload size, QPS, and latency. By using the out-of-the-box setup, you can quickly get started with load testing without any additional setup. This notebook is recommended for low to mid QPS goals. However, if you have a QPS goal greater than 2k, we recommend considering a professional load testing tool such as Locust for more accurate results.
-
-## Load Testing Serving Endpoints with Locust
-
-### Setting up Locust on your own computer in single-process mode (5 min setup, supports low QPS)
+## Setting up Locust on your own computer in single-process mode (5 min setup, supports low QPS)
 
 Follow [the steps outlined here](/local_load_test/README.md) to run a single-process load test from your local computer. Locust will only use one CPU core on your machine, and the max queries per second (QPS) supported depends on your payload size. For small payloads, it can support up to hundreds of QPS. For large payloads, it may only support less than 10 QPS.
 
-
-### Setting up distributed Locust on a powerful machine (30 min setup, supports high QPS)
+## Setting up distributed Locust on a powerful machine (30 min setup, supports high QPS)
 Follow [the steps outlined here](/high_qps_load_test/README.md) to set up distributed Locust on an AWS EC2 instance. It should also be applicable to other cloud providers’ Ubuntu instances.
