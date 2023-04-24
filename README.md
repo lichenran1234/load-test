@@ -1,7 +1,7 @@
 # How to Load Test Databricks Model Serving Endpoints
 
 ## Load Testing using Databricks Notebook (no setup needed)
-This [notebook](/db_load_testing_notebook/Databricks%20Model%20Serving%20Load%20Testing.py) provides a convenient way to load test your serving endpoints and obtain insights into workload size, QPS, and latency. By using the out-of-the-box setup, you can quickly get started with load testing without any additional setup. This notebook is recommended for low to mid QPS goals. If you have a QPS goal greater than 2k, we recommend following the rest of this tutorial to set up Locust.
+This [notebook](/db_load_testing_notebook) provides a convenient way to load test your serving endpoints and obtain insights into workload size, QPS, and latency. By using the out-of-the-box setup, you can quickly get started with load testing without any additional setup. This notebook is recommended for low to mid QPS goals. If you have a QPS goal greater than 2k, we recommend following the rest of this tutorial to set up Locust.
 
 ## Load Testing using Locust
 Load testing [Databricks Model Serving](https://docs.databricks.com/machine-learning/model-serving/index.html) endpoints is an important step before moving the endpoint to production. A load test verfies the latency meets your requirements, helps you estimate costs, and determines expected throughput and concurrency. 
